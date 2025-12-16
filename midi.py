@@ -17,6 +17,14 @@ else:
     print("⚠️ No IAC Driver found — creating virtual port instead.")
     midiout.open_virtual_port("GestureStylophone")
 
+def play_note(note, duration=0.15):
+    """Play a single MIDI note"""
+    velocity = random.randint(60, 120)
+    midiout.send_message([0x90, note, velocity])  # Note ON
+    time.sleep(duration)
+    midiout.send_message([0x80, note, 0])         # Note OFF
+
+'''
 # Play random notes for a few seconds
 print("🎹 Sending test notes...")
 
@@ -31,3 +39,5 @@ try:
             time.sleep(1.3)
 except KeyboardInterrupt:
     print("Stopped.")
+'''
+
