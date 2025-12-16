@@ -24,20 +24,8 @@ def play_note(note, duration=0.15):
     time.sleep(duration)
     midiout.send_message([0x80, note, 0])         # Note OFF
 
-'''
-# Play random notes for a few seconds
-print("🎹 Sending test notes...")
+def send_cc(cc, value):
+    value = max(0, min(127, int(value)))
+    midiout.send_message([0xB0, cc, value])
 
-try:
-    notes = [58, 56, 54, 51, 54, 56 ,58]  # C major scale
-    for note in notes:
-            velocity = random.randint(60, 120)
-            midiout.send_message([0x90, note, velocity])  # Note ON
-            print(f"Note ON: {note}")
-            time.sleep(1.3)
-            midiout.send_message([0x80, note, 0])  # Note OFF
-            time.sleep(1.3)
-except KeyboardInterrupt:
-    print("Stopped.")
-'''
 

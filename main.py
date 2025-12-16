@@ -1,7 +1,7 @@
 import cv2
 import time
 from gesture import GestureDetector
-from midi import play_note
+from midi import play_note, send_cc
 
 # Gesture → MIDI note mapping
 GESTURE_TO_NOTE = {
@@ -38,20 +38,7 @@ try:
 
                 last_gesture = gesture
                 last_note_time = current_time
-                '''
-                 if gesture == "1 finger":
-                print("1 finger")
-            elif gesture == "2 fingers":
-                print("2 fingers")
-            elif gesture == "fist":
-                print("fist")
-            elif gesture == "open_palm":
-                print("palm")
-            elif gesture == "3 fingers":
-                print("3 fingers")
-                '''
-           
-
+        
             cv2.putText(
                 frame,
                 gesture,
@@ -61,7 +48,7 @@ try:
                 (0,255,0),
                 3
             )
-
+  
         cv2.imshow("Gesture FX Looper", frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
